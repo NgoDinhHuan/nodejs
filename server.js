@@ -7,6 +7,7 @@ import {
 
 // send test request => use postman
 dotenv.config() // bat buoc co
+import connect from './database/database.js'
 const app = express()
 app.use(express.json())// cho phep doc duoc the body cua request
 const port = process.env.PORT ?? 3000// bien moi truong
@@ -20,6 +21,7 @@ app.get('/',(req,res) => {
 
 
 app.listen(port, async()=>{
+    await connect()
     console.log(`listening on port :${port}`);
 }) 
 
