@@ -28,7 +28,7 @@ export default mongoose.model('User',
             required: true,
                         
         },
-        adrress:{
+        address:{
             type: String,
             required: true,
                         

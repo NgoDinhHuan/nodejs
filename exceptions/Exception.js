@@ -6,8 +6,12 @@ export default class Exception extends Error{
     static CANNOT_CONNECT_MONGODB = "cannot connect to Mogoose" 
     static USER_EXIST = "User already exits"
     static CANNOT_REGISTER_USER= "cannot register user"
-    constructor(messgge){
-        super(messgge)// call constructor of parent class(Error)
-        print(messgge, OutputType.ERROR)
+    static WRONG_EMAIL_AND_PASSWORD ="Wrong email or password"
+
+
+    constructor(message, validationErrors={}){
+        super(message)//call constructor of parent class(Error)        
+        print(message, OutputType.ERROR)
+        this.validationErrors = validationErrors
     }
 }

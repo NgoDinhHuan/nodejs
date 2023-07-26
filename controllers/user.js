@@ -52,7 +52,7 @@ import {
     try {
       debugger
       const user = await userRepository.register({    
-        name, 
+        name,   
         email,     
         password, 
         phoneNumber, 
