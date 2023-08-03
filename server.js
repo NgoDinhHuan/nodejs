@@ -11,8 +11,9 @@ import {
 } from './routes/index.js'
 
 
+
 const app = express()
-app.use(checkToken)//shied,guard    
+app.use(checkToken)//bảo vệ   
 app.use(express.json())// cho phep doc duoc the body cua request
 const port = process.env.PORT ?? 3000// bien moi truong
 

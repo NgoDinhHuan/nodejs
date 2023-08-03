@@ -7,6 +7,33 @@ const getAllStudents = async ({
 }) => {
     console.log('get all student with paging');
 }
+const getStudentById = async(studentId) => {
+    const student = await Student.findById(studentId)
+    if(!student) {
+        throw new Exception('Cannot find Student with id ' + studentId)
+    }
+    return student 
+}
+const updateStudent = async ({
+    id,
+    name, 
+    email, 
+    languages, 
+    gender, 
+    phoneNumber,
+    address
+}) => {    
+    const student = await Student.findById(id)
+    debugger        
+    student.name = name ?? student.name
+    student.email = email ?? student.email
+    student.languages = languages ?? student.languages
+    student.gender = gender ?? student.gender
+    student.phoneNumber = phoneNumber ?? student.phoneNumber
+    student.address = address ?? student.address
+    await student.save()
+    return student    
+}
 
 //language:"english,vietnamese"
 const insertStudent = async ({
@@ -42,4 +69,6 @@ const insertStudent = async ({
 export default {
     getAllStudents,
     insertStudent,
+    getStudentById,
+    updateStudent,
 }

@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const login = async ({email,password})=>{
-    //print('login user in user repository', OutputType.INFORMATION)
     let existingUser = await User.findOne({email}).exec()
     if(existingUser){
         // not encrypt password
@@ -16,11 +15,11 @@ const login = async ({email,password})=>{
                     data: existingUser
                 },
                 process.env.JWT_SECRET,{
-                    expiresIn:'30 days'// 30 ngay
-                    //expiresIn:'60'
+                     expiresIn:'30 days'// 30 ngay
+                    // expiresIn:'60'
                 }
             ) 
-            // clone an add more properties
+            // clone doi tương va cho them thuoc tính
             return{
                 ... existingUser.toObject(), // lay doi tuong dang rough
                 password:"not show",
@@ -45,11 +44,7 @@ const register = async({
     if (!!existingUser) {
       throw new Exception(Exception.USER_EXIST);
     }
-        // encrypt password , use bcrypt
-        // use for login 
-        //  const isMatched = await bcrypt.compare(password, existingUser.password)
-        //  if(isMatched){ 
-        //  }
+        
         const hashedPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUND))
         // insert to db
         const newUser = await User.create({
@@ -64,8 +59,7 @@ const register = async({
             password:'not show '
         };
 
-    //validation already done
-   // print('register user with: name:' + name + 'email:' + email + ' password:' + password + 'phone:' + phoneNumber + 'address:' + address, OutputType.INFORMATION )
+   
 
 }
 export default{

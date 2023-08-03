@@ -1,14 +1,14 @@
 import HttpStatusCode from '../exceptions/HttpStatusCode.js'
 import jwt from 'jsonwebtoken'
 export default function checkToken(req, res, next) { 
-    //bypass login, register
+    //ko áp dụng  login, register
     if(req.url.toLowerCase().trim() == '/users/login'.toLowerCase().trim() 
         || req.url.toLowerCase().trim() == '/users/register'.toLowerCase().trim()) {
             next()
         return
     }
-    //other requests
-    //get and validate token
+    
+    //lấy  token
     const token = req.headers?.authorization?.split(" ")[1]
     try {
         const jwtObject = jwt.verify(token, process.env.JWT_SECRET)      
